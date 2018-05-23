@@ -91,7 +91,6 @@ void *dlsym_or_die(const char *sym) {
 // 1) In ASAN builds, the sanitizer runtime ends up calling dl_iterate_phdr from its
 //    initialization.
 // 2) OpenSSL in FIPS mode calls dlopen() within its constructor.
-__attribute__((constructor))
 void InitIfNecessary() {
   // Dynamic library initialization is always single-threaded, so there's no
   // need for any synchronization here.
@@ -138,27 +137,3 @@ bool SafeToUnwindStack() {
 
 } // namespace debug
 } // namespace kudu
-
-extern "C" {
-
-void *dlopen(const char *filename, int flag) { // NOLINT
-  InitIfNecessary();
-  ScopedBumpDepth d;
-  return CALL_ORIG(dlopen, filename, flag);
-}
-
-int dlclose(void *handle) { // NOLINT
-  InitIfNecessary();
-  ScopedBumpDepth d;
-  return CALL_ORIG(dlclose, handle);
-}
-
-#ifdef HOOK_DL_ITERATE_PHDR
-int dl_iterate_phdr(dl_iterate_phdr_cbtype callback, void *data) { // NOLINT
-  InitIfNecessary();
-  ScopedBumpDepth d;
-  return CALL_ORIG(dl_iterate_phdr, callback, data);
-}
-#endif
-
-}

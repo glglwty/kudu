@@ -52,9 +52,11 @@ execute_process(COMMAND ln -nsf
                 "${JAVA_HOME}"
                 "${EXECUTABLE_OUTPUT_PATH}/java-home")
 
+find_path(HIVE_ROOT bin/hive)
+find_path(HADOOP_ROOT bin/hadoop)
 file(GLOB DEPENDENCY_JARS
-  "${CMAKE_SOURCE_DIR}/thirdparty/installed/common/opt/hive/lib/*"
-  "${CMAKE_SOURCE_DIR}/thirdparty/installed/common/opt/hadoop/share/hadoop/common/*")
+  "${HIVE_ROOT}/lib/*"
+  "${HADOOP_ROOT}/share/hadoop/common/*")
 
 add_jar(hms-plugin
   "${CMAKE_SOURCE_DIR}/java/kudu-hive/src/main/java/org/apache/kudu/hive/metastore/KuduMetastorePlugin.java"

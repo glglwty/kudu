@@ -46,9 +46,7 @@ using std::vector;
 
 class my_spinlock : public boost::detail::spinlock {
  public:
-  my_spinlock() {
-    v_ = 0;
-  }
+  my_spinlock() { boost::detail::spinlock::unlock(); }
 
  private:
   DISALLOW_COPY_AND_ASSIGN(my_spinlock);

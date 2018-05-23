@@ -146,6 +146,8 @@ target_link_libraries(kudu-tserver
   tserver
   ${KUDU_BASE_LIBS})
 
+install(TARGETS kudu-tserver RUNTIME DESTINATION bin)
+
 #########################################
 # tserver_test_util
 #########################################

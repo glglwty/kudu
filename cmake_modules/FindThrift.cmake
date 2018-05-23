@@ -105,7 +105,7 @@ function(THRIFT_GENERATE_CPP SRCS HDRS TGTS)
     # TODO(dan): Add the fb303 files manually. This is a complete hack.
     list(APPEND ${SRCS} "${THRIFT_CC_OUT}" "fb303_types.cpp" "fb303_constants.cpp" "FacebookService.cpp")
     list(APPEND ${HDRS} "${THRIFT_H_OUT}" "fb303_types.h" "fb303_constants.h" "FacebookService.h")
-
+    find_path(FB303_ROOT share/fb303/if/fb303.thrift)
     add_custom_command(
       OUTPUT ${THRIFT_CC_OUT} ${THRIFT_H_OUT}
       DEPENDS ${ABS_FIL}
@@ -116,7 +116,7 @@ function(THRIFT_GENERATE_CPP SRCS HDRS TGTS)
         --out ${ARG_BINARY_ROOT}
         -I ${ARG_SOURCE_ROOT}
         # Used to find built-in .thrift files (e.g. fb303.thrift)
-        -I ${THIRDPARTY_INSTALL_CURRENT_DIR}
+        -I ${FB303_ROOT}
         ${EXTRA_THRIFT_PATH_ARGS} ${ABS_FIL}
       COMMENT "Running C++ thrift compiler on ${FIL}"
       VERBATIM )

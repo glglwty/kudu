@@ -25,6 +25,9 @@ find_path(LZ4_INCLUDE_DIR lz4.h
   # make sure we don't accidentally pick up a different version
   NO_CMAKE_SYSTEM_PATH
   NO_SYSTEM_ENVIRONMENT_PATH)
+find_library(LZ4_SHARED_LIB lz4
+  NO_CMAKE_SYSTEM_PATH
+  NO_SYSTEM_ENVIRONMENT_PATH)
 find_library(LZ4_STATIC_LIB liblz4.a
   NO_CMAKE_SYSTEM_PATH
   NO_SYSTEM_ENVIRONMENT_PATH)

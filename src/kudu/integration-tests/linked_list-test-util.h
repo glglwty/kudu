@@ -24,6 +24,7 @@
 #include <vector>
 
 #include <glog/logging.h>
+#include <gflags/gflags.h>
 
 #include "kudu/client/client-test-util.h"
 #include "kudu/client/client.h"

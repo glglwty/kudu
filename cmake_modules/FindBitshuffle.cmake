@@ -30,6 +30,10 @@ find_library(BITSHUFFLE_STATIC_LIB bitshuffle.a
   NO_CMAKE_SYSTEM_PATH
   NO_SYSTEM_ENVIRONMENT_PATH)
 
+find_library(BITSHUFFLE_SHARED_LIB libbitshuffle.so
+  NO_CMAKE_SYSTEM_PATH
+  NO_SYSTEM_ENVIRONMENT_PATH)
+
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(BITSHUFFLE REQUIRED_VARS
   BITSHUFFLE_STATIC_LIB BITSHUFFLE_INCLUDE_DIR)

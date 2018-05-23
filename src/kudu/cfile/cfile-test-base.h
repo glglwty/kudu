@@ -19,6 +19,7 @@
 #define KUDU_CFILE_TEST_BASE_H
 
 #include <glog/logging.h>
+#include <gflags/gflags.h>
 #include <algorithm>
 #include <functional>
 #include <stdlib.h>

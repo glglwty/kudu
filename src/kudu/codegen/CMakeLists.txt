@@ -51,7 +51,7 @@ llvm_map_components_to_libnames(llvm_LIBRARIES "${LLVM_REQ_COMPONENTS}")
 #######################################
 
 ## Create .ll file for precompiled functions (and their dependencies).
-set(CLANG_EXEC ${THIRDPARTY_DIR}/clang-toolchain/bin/clang++)
+set(CLANG_EXEC clang++)
 set(IR_SOURCE ${CMAKE_CURRENT_SOURCE_DIR}/precompiled.cc)
 set(IR_OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/precompiled.ll)
 set(IR_OUTPUT_CC ${IR_OUTPUT}.cc)
@@ -70,6 +70,10 @@ if (APPLE)
   set(PREFIXED_IR_INCLUDES
     ${PREFIXED_IR_INCLUDES}
     -cxx-isystem "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1")
+else()
+  set(PREFIXED_IR_INCLUDES
+  ${PREFIXED_IR_INCLUDES}
+  -isystem ${LIBSTDCXX_INCLUDE} -isystem ${LIBSTDCXX_INCLUDE}/x86_64-unknown-linux-gnu -isystem ${LIBC_INCLUDE})
 endif()
 
 # Get preprocessing definitions, which enable directives for glog and gtest.

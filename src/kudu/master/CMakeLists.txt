@@ -82,3 +82,5 @@ target_link_libraries(kudu-master
   ${KRB5_REALM_OVERRIDE}
   master
   ${KUDU_BASE_LIBS})
+
+install(TARGETS kudu-master RUNTIME DESTINATION bin)

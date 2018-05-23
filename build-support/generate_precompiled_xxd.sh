@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
 #
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -20,6 +20,7 @@
 # Script which embeds a piece of raw data into a C++ source file. Functionally
 # the same as xxd -i, but inserts custom namespace and variable names.
 
+set -e
 IN_FILE=$1
 OUT_FILE=$2
 

@@ -29,6 +29,10 @@ find_library(SQUEASEL_STATIC_LIB libsqueasel.a
   NO_CMAKE_SYSTEM_PATH
   NO_SYSTEM_ENVIRONMENT_PATH)
 
+find_library(SQUEASEL_SHARED_LIB libsqueasel.so
+  NO_CMAKE_SYSTEM_PATH
+  NO_SYSTEM_ENVIRONMENT_PATH)
+
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(SQUEASEL REQUIRED_VARS
   SQUEASEL_STATIC_LIB SQUEASEL_INCLUDE_DIR)
